@@ -1,0 +1,50 @@
+{
+  "query": {
+    "text": "Find evidence about Project Atlas budget and timeline",
+    "intent_hints": ["mixed"],
+    "scope_paths": ["/nas/synthetic/project-atlas"]
+  },
+  "summary": "Verified evidence was found in two synthetic documents under /nas/synthetic/project-atlas. The contract extract reports a budget figure and the project plan QA result reports timeline milestones. No audio, photo, or media evidence was requested/found for this scoped demo.",
+  "graph": {
+    "nodes": [
+      {
+        "id": "q1",
+        "type": "Query",
+        "props": {"text": "Find evidence about Project Atlas budget and timeline"},
+        "provenance": {"source_type": "user_input", "agent": "parent", "cli": "none", "action": "none", "route_state": "completed", "source_ref": "user_query"}
+      },
+      {
+        "id": "f1",
+        "type": "File",
+        "props": {"path": "/nas/synthetic/project-atlas/contract.pdf", "kind": "file"},
+        "provenance": {"source_type": "expert_result", "agent": "file-agent", "cli": "ug-filesystem", "action": "find", "route_state": "completed", "source_ref": "/nas/synthetic/project-atlas/contract.pdf"}
+      },
+      {
+        "id": "d1",
+        "type": "ExtractedFact",
+        "props": {"field": "budget", "value": "USD 120000", "evidence_ref": "doc-extract:contract.pdf:budget"},
+        "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:contract.pdf:budget"}
+      },
+      {
+        "id": "e1",
+        "type": "Evidence",
+        "props": {"summary": "Project plan lists kickoff in May 2026 and delivery in August 2026", "evidence_ref": "doc-qa:plan.docx:timeline"},
+        "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "qa", "route_state": "completed", "source_ref": "doc-qa:plan.docx:timeline"}
+      }
+    ],
+    "edges": [
+      {"id": "r1", "type": "SUPPORTS", "from": "d1", "to": "q1", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:contract.pdf:budget"}},
+      {"id": "r2", "type": "SUPPORTS", "from": "e1", "to": "q1", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "qa", "route_state": "completed", "source_ref": "doc-qa:plan.docx:timeline"}},
+      {"id": "r3", "type": "DERIVED_FROM", "from": "d1", "to": "f1", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "/nas/synthetic/project-atlas/contract.pdf"}}
+    ]
+  },
+  "coverage": [
+    {"route": "file-agent/ug-filesystem", "state": "completed", "items": 2, "failures": []},
+    {"route": "document-agent/ug-document", "state": "completed", "items": 2, "failures": []},
+    {"route": "knowledge-agent/ug-knowledge", "state": "not_run", "reason": "not required for scoped document demo"}
+  ],
+  "proposed_next_actions": [
+    {"action": "Save this report to NAS using ug-knowledge save-text", "requires_confirmation": true, "executed": false},
+    {"action": "Tag verified source files using ug-filemgr tag-add-file", "requires_confirmation": true, "executed": false}
+  ]
+}
