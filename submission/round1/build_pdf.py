@@ -38,7 +38,7 @@ html = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="author" content="LancemDev">
+<meta name="author" content="Lance Munyao">
 <title>Warranty Receipt Graph - Round 1 Project Proposal</title>
 <style>
   @page {{
@@ -176,7 +176,7 @@ html = f"""<!doctype html>
   <p class="subtitle">A report-only warranty and receipt lifecycle graph for UGREEN AI NAS</p>
   <div class="meta">
     <div><strong>Track:</strong> Open Innovation</div>
-    <div><strong>Submitter:</strong> LancemDev</div>
+    <div><strong>Submitter:</strong> Lance Munyao</div>
     <div><strong>Skill:</strong> warranty-receipt-graph</div>
     <div><strong>Date:</strong> November 16, 2026</div>
   </div>

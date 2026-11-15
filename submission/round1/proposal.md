@@ -1,7 +1,7 @@
 # Warranty Receipt Graph
 
 **Track:** Open Innovation  
-**Submitter:** LancemDev  
+**Submitter:** Lance Munyao  
 **Skill name:** `warranty-receipt-graph`  
 **Date:** November 16, 2026
 
