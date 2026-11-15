@@ -83,6 +83,7 @@ A partial report is not a success claim. Label it clearly with completed routes,
 
 - Report-only: no write effects, no approval-required actions, no external upload.
 - Use only user-authorized scope and the minimum evidence needed.
+- Photo access is limited to images in the confirmed scope. The Skill does not use the camera, screen, clipboard, contacts, or continuous monitoring.
 - Keep all processing on the NAS and its registered experts; do not send data to external services.
 - Use synthetic or anonymized examples only. Do not include real credentials, personal data, or API keys.
 
