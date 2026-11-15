@@ -1,0 +1,203 @@
+# Synthetic example report
+
+All names, documents, dates, amounts, serial numbers, and paths below are fictional. This example is structurally illustrative and is not a runtime-tested NAS response.
+
+## Answer
+
+In the confirmed demo folder, two purchases are linked to receipt or invoice evidence and stated warranty terms. The Lumen Desk Lamp L1 warranty expires on 2026-12-01, within the 60-day window, so it is `expiring_soon`. The Aurora Air Purifier A2 warranty is active through 2028-03-14. One warranty document for an Orbit Router R6 references order NS-10501, but no purchase proof was found in scope. The purchase order and invoice for NS-10482 also disagree by USD 10.00. This is a report-only result; no files were changed.
+
+## Structured report
+
+```json
+{
+  "answer": "Two purchases are linked to evidence and stated warranty terms. The Lumen Desk Lamp L1 warranty is expiring soon; the Aurora Air Purifier A2 warranty is active. One Orbit Router R6 warranty has no purchase proof in scope, and the NS-10482 purchase order and invoice differ by USD 10.00. No files were changed.",
+  "report_meta": {
+    "report_date": "2026-11-16",
+    "as_of_date": "2026-11-16",
+    "expiry_window_days": 60,
+    "scope_paths": ["warranty-demo"],
+    "synthetic_example": true
+  },
+  "warranty_timeline": [
+    {
+      "product": "Aurora Air Purifier A2",
+      "purchase_date": "2026-03-14",
+      "term_text": "24 months from purchase date",
+      "end_date": "2028-03-14",
+      "status": "active",
+      "status_rule": "stated_term_from_verified_start_date",
+      "evidence_refs": ["doc-qa:warranty-aurora-a2.pdf:term", "doc-extract:invoice-NS-10482.pdf:date"]
+    },
+    {
+      "product": "Lumen Desk Lamp L1",
+      "purchase_date": "2025-12-01",
+      "term_text": "12 months from purchase date",
+      "end_date": "2026-12-01",
+      "status": "expiring_soon",
+      "status_rule": "stated_term_from_verified_start_date",
+      "evidence_refs": ["doc-qa:warranty-lumen-l1.pdf:term", "doc-extract:receipt-HL-2207.pdf:date"]
+    },
+    {
+      "product": "Orbit Router R6",
+      "purchase_date": "2026-05-02",
+      "term_text": "24 months from purchase date",
+      "end_date": "2028-05-02",
+      "status": "active",
+      "status_rule": "stated_term_from_verified_start_date",
+      "evidence_refs": ["doc-qa:warranty-orbit-router.pdf:term"]
+    }
+  ],
+  "purchases": [
+    {
+      "purchase_id": "p1",
+      "merchant": "Northstar Home Supply",
+      "date": "2026-03-14",
+      "total": "249.00",
+      "currency": "USD",
+      "order_number": "NS-10482",
+      "receipt_refs": ["ocr:receipt-photo-2026-03-14.jpg"],
+      "invoice_refs": ["doc-extract:invoice-NS-10482.pdf"],
+      "line_items": [
+        {
+          "description": "Aurora Air Purifier A2",
+          "product": "Aurora Air Purifier A2",
+          "model": "A2",
+          "serial": "A2-2026-00417",
+          "quantity": "1",
+          "amount": "249.00"
+        }
+      ]
+    },
+    {
+      "purchase_id": "p2",
+      "merchant": "Harbor Lights",
+      "date": "2025-12-01",
+      "total": "89.99",
+      "currency": "USD",
+      "order_number": "HL-2207",
+      "receipt_refs": ["doc-extract:receipt-HL-2207.pdf"],
+      "invoice_refs": [],
+      "line_items": [
+        {
+          "description": "Lumen Desk Lamp L1",
+          "product": "Lumen Desk Lamp L1",
+          "model": "L1",
+          "serial": "L1-2025-08831",
+          "quantity": "1",
+          "amount": "89.99"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "f1",
+      "finding_type": "expiring_soon",
+      "summary": "Lumen Desk Lamp L1 warranty ends 2026-12-01, 15 days after the report date.",
+      "evidence_refs": ["doc-qa:warranty-lumen-l1.pdf:term", "doc-extract:receipt-HL-2207.pdf:date"],
+      "severity": "action_needed"
+    },
+    {
+      "finding_id": "f2",
+      "finding_type": "missing_purchase_proof",
+      "summary": "Orbit Router R6 warranty references order NS-10501, but no receipt or invoice for that order was found in scope.",
+      "evidence_refs": ["doc-qa:warranty-orbit-router.pdf:order"],
+      "severity": "action_needed"
+    },
+    {
+      "finding_id": "f3",
+      "finding_type": "mismatch",
+      "summary": "Purchase order NS-10482 totals USD 259.00 while invoice NS-10482 totals USD 249.00; difference USD 10.00.",
+      "evidence_refs": ["doc-extract:purchase-order-NS-10482.pdf:total", "doc-extract:invoice-NS-10482.pdf:total"],
+      "severity": "warning"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Invoice NS-10482 total",
+      "value": "USD 249.00",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-extract:invoice-NS-10482.pdf:total",
+      "location": "invoice total field",
+      "route_state": "completed"
+    },
+    {
+      "claim": "Receipt photo date and total",
+      "value": "2026-03-14, USD 249.00",
+      "source_type": "expert_result",
+      "agent": "photo-agent",
+      "source_ref": "ocr:receipt-photo-2026-03-14.jpg",
+      "location": "OCR result",
+      "route_state": "completed"
+    },
+    {
+      "claim": "Aurora warranty term",
+      "value": "24 months from purchase date",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-qa:warranty-aurora-a2.pdf:term",
+      "location": "warranty terms section",
+      "route_state": "completed"
+    },
+    {
+      "claim": "Lumen warranty term",
+      "value": "12 months from purchase date",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-qa:warranty-lumen-l1.pdf:term",
+      "location": "warranty terms section",
+      "route_state": "completed"
+    },
+    {
+      "claim": "Orbit warranty order reference",
+      "value": "NS-10501",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-qa:warranty-orbit-router.pdf:order",
+      "location": "warranty order field",
+      "route_state": "completed"
+    }
+  ],
+  "coverage": [
+    {"route": "file-agent", "state": "completed", "items": 7, "failures": [], "truncated": false},
+    {"route": "document-agent", "state": "completed", "items": 6, "failures": [], "truncated": false},
+    {"route": "photo-agent", "state": "completed", "items": 1, "failures": [], "truncated": false}
+  ],
+  "graph": {
+    "nodes": [
+      {"id": "run", "type": "Run", "props": {"as_of_date": "2026-11-16"}, "provenance": {"source_type": "user_input", "agent": "parent", "cli": "none", "action": "none", "route_state": "completed", "source_ref": "synthetic-example"}},
+      {"id": "scope", "type": "Scope", "props": {"path": "warranty-demo"}, "provenance": {"source_type": "expert_result", "agent": "file-agent", "cli": "ug-filesystem", "action": "find", "route_state": "completed", "source_ref": "warranty-demo"}},
+      {"id": "invoice", "type": "Invoice", "props": {"invoice_number": "NS-10482", "total": "249.00", "currency": "USD"}, "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf"}},
+      {"id": "receipt", "type": "Receipt", "props": {"source_ref": "ocr:receipt-photo-2026-03-14.jpg", "total": "249.00", "currency": "USD"}, "provenance": {"source_type": "expert_result", "agent": "photo-agent", "cli": "ug-photo", "action": "vision-ocr", "route_state": "completed", "source_ref": "ocr:receipt-photo-2026-03-14.jpg"}},
+      {"id": "purchase", "type": "Purchase", "props": {"purchase_id": "p1", "merchant": "Northstar Home Supply", "date": "2026-03-14", "total": "249.00"}, "provenance": {"source_type": "parent_inference", "agent": "parent", "cli": "none", "action": "compare", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf:invoice_number", "notes": "exact_invoice_number"}},
+      {"id": "lineitem", "type": "LineItem", "props": {"description": "Aurora Air Purifier A2", "serial": "A2-2026-00417", "amount": "249.00"}, "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf:line_item"}},
+      {"id": "product", "type": "Product", "props": {"name": "Aurora Air Purifier A2", "serial": "A2-2026-00417"}, "provenance": {"source_type": "parent_inference", "agent": "parent", "cli": "none", "action": "compare", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf:serial", "notes": "exact_serial"}},
+      {"id": "warranty", "type": "Warranty", "props": {"term_text": "24 months from purchase date", "start_date": "2026-03-14", "end_date": "2028-03-14", "status": "active", "status_rule": "stated_term_from_verified_start_date"}, "provenance": {"source_type": "parent_inference", "agent": "parent", "cli": "none", "action": "compare", "route_state": "completed", "source_ref": "doc-qa:warranty-aurora-a2.pdf:term", "notes": "stated_term_from_verified_start_date"}},
+      {"id": "missing", "type": "Finding", "props": {"finding_type": "missing_purchase_proof", "summary": "No receipt or invoice for order NS-10501"}, "provenance": {"source_type": "parent_inference", "agent": "parent", "cli": "none", "action": "compare", "route_state": "completed", "source_ref": "doc-qa:warranty-orbit-router.pdf:order", "notes": "no linked purchase proof"}},
+      {"id": "coverage", "type": "Coverage", "props": {"route": "document-agent", "state": "completed", "items": 6}, "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "document-agent coverage"}}
+    ],
+    "edges": [
+      {"id": "e1", "type": "HAS_SCOPE", "from": "run", "to": "scope", "status": "asserted", "provenance": {"source_type": "user_input", "agent": "parent", "cli": "none", "action": "none", "route_state": "completed", "source_ref": "synthetic-example"}},
+      {"id": "e2", "type": "PROVES", "from": "invoice", "to": "purchase", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf:invoice_number"}},
+      {"id": "e3", "type": "PROVES", "from": "receipt", "to": "purchase", "status": "inferred", "rule": "exact_merchant_date_total_currency", "provenance": {"source_type": "parent_inference", "agent": "parent", "cli": "none", "action": "compare", "route_state": "completed", "source_ref": "ocr:receipt-photo-2026-03-14.jpg", "notes": "exact_merchant_date_total_currency"}},
+      {"id": "e4", "type": "CONTAINS", "from": "invoice", "to": "lineitem", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf:line_item"}},
+      {"id": "e5", "type": "REPRESENTS", "from": "lineitem", "to": "product", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "doc-extract:invoice-NS-10482.pdf:serial"}},
+      {"id": "e6", "type": "COVERS", "from": "warranty", "to": "product", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "qa", "route_state": "completed", "source_ref": "doc-qa:warranty-aurora-a2.pdf:term"}},
+      {"id": "e7", "type": "HAS_FINDING", "from": "run", "to": "missing", "status": "inferred", "rule": "no_linked_purchase_proof", "provenance": {"source_type": "parent_inference", "agent": "parent", "cli": "none", "action": "compare", "route_state": "completed", "source_ref": "doc-qa:warranty-orbit-router.pdf:order", "notes": "no_linked_purchase_proof"}},
+      {"id": "e8", "type": "HAS_COVERAGE", "from": "run", "to": "coverage", "status": "asserted", "provenance": {"source_type": "expert_result", "agent": "document-agent", "cli": "ug-document", "action": "extract", "route_state": "completed", "source_ref": "document-agent coverage"}}
+    ]
+  },
+  "proposed_next_actions": [
+    {"action": "Tag linked receipt, invoice, and warranty files with warranty-2026", "requires_confirmation": true, "executed": false},
+    {"action": "Save this report to the NAS", "requires_confirmation": true, "executed": false},
+    {"action": "Create a reminder for the Lumen Desk Lamp L1 warranty before 2026-12-01", "requires_confirmation": true, "executed": false}
+  ],
+  "limitations": [
+    "Receipt photo fields were cross-checked against the invoice; OCR errors are possible.",
+    "No merchant portal, serial registry, or external warranty service was queried.",
+    "Only the confirmed scope was searched; other folders were not scanned.",
+    "Runtime behavior on a real UGREEN AI NAS still needs testing."
+  ]
+}
+```

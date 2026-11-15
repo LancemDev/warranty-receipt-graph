@@ -49,9 +49,9 @@ Good differentiators:
 | **Trip memory graph** | “Build a trip timeline from photos, bookings, tickets, and voice notes.” | Trip, Day, Place, Photo, Booking, Document, Expense | `ug-photo search-picture`, `ug-document extract/qa`, `ug-knowledge audio-transcription`, `ug-filesystem find` | Cross-modal memory; first-party photo search is single-domain. |
 | **Cross-domain duplicate/version graph** | “Find the same content across files, photos, and media, not just exact duplicates.” | ContentIdentity, FileRepresentation, HashGroup, DocumentVersion | `ug-filemgr scan-dedupe`, `ug-filesystem md5sum/sha256sum`, `ug-photo meta`, `ug-video search` | First-party dedupe is hash-based files only. |
 
-## Recommendation
+## Recommendation (implemented)
 
-Pivot the repo to **Warranty & Receipt Lifecycle Graph** (working name `warranty-receipt-graph`):
+The repo was pivoted to **Warranty & Receipt Lifecycle Graph** (working name `warranty-receipt-graph`):
 
 - Concrete, consumer-relevant “AI NAS home admin” story.
 - Uses strong first-party capabilities: OCR, structured extraction (`receipt`/`invoice` schemas), reconciliation, document QA.
