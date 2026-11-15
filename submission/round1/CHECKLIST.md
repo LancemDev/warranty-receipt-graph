@@ -37,5 +37,6 @@ The extracted ZIP was checked with the official Uliya Skill Kit 0.7.7 checker:
 
 - Confirm the PDF opens and both files upload without errors.
 - Confirm the ZIP has the `warranty-receipt-graph/` top-level folder.
+- Verify checksums with `sha256sum -c SHA256SUMS.txt`.
 - Do not add real NAS paths, personal data, credentials, or API keys.
 - Round 1 does not require a demo video or a code repository link.
