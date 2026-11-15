@@ -1,6 +1,6 @@
 ---
 name: warranty-receipt-graph
-description: Builds a report-only warranty and receipt lifecycle report from a NAS folder, linking purchases, receipt or invoice evidence, products, and stated warranty terms so users can see coverage, upcoming expiries, missing proof, and mismatches. Use when a user asks what is under warranty, what expires soon, which purchases lack receipts, or how receipts, invoices, and warranty documents connect.
+description: Builds a report-only warranty and receipt lifecycle report from a user-authorized NAS folder, linking purchases, receipt or invoice evidence, products, and stated warranty terms so users can see coverage, upcoming expiries, missing proof, and mismatches without changing files. Use when a user asks what is under warranty, what expires soon, which purchases lack receipts, or how receipts, invoices, and warranty documents connect.
 ---
 
 # Goal

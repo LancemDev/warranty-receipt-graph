@@ -170,6 +170,33 @@
       "source_ref": "doc-qa:warranty-orbit-router.pdf:order",
       "location": "warranty order field",
       "route_state": "completed"
+    },
+    {
+      "claim": "Orbit warranty term and purchase date",
+      "value": "24 months from 2026-05-02",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-qa:warranty-orbit-router.pdf:term",
+      "location": "warranty terms section",
+      "route_state": "completed"
+    },
+    {
+      "claim": "Purchase order NS-10482 total",
+      "value": "USD 259.00",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-extract:purchase-order-NS-10482.pdf:total",
+      "location": "purchase order total field",
+      "route_state": "completed"
+    },
+    {
+      "claim": "Lumen receipt date and total",
+      "value": "2025-12-01, USD 89.99",
+      "source_type": "expert_result",
+      "agent": "document-agent",
+      "source_ref": "doc-extract:receipt-HL-2207.pdf:date",
+      "location": "receipt date and total fields",
+      "route_state": "completed"
     }
   ],
   "coverage": [
