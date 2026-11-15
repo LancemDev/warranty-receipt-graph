@@ -175,7 +175,7 @@ html = f"""<!doctype html>
   <h1>Warranty Receipt Graph</h1>
   <p class="subtitle">A report-only warranty and receipt lifecycle graph for UGREEN AI NAS</p>
   <div class="meta">
-    <div><strong>Track:</strong> Open Innovation</div>
+    <div><strong>Track:</strong> Automate Your Workflow</div>
     <div><strong>Submitter:</strong> Lance Munyao</div>
     <div><strong>Skill:</strong> warranty-receipt-graph</div>
     <div><strong>Date:</strong> November 16, 2026</div>

@@ -28,7 +28,7 @@ The extracted ZIP was checked with the official Uliya Skill Kit 0.7.7 checker:
 ## Devpost fields
 
 - **Project name:** Warranty Receipt Graph
-- **Track:** Open Innovation
+- **Track:** Automate Your Workflow
 - **Short description:** A report-only warranty and receipt lifecycle graph for UGREEN AI NAS.
 - **Built with:** Uliya, UGOS, UGREEN AI NAS capabilities, Markdown. The PDF was rendered separately with Python, Python-Markdown, and WeasyPrint.
 - **Repository:** optional in Round 1; do not paste secrets.

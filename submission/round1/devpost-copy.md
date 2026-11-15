@@ -19,7 +19,7 @@ Receipts, invoices, warranty PDFs, and photos of paper receipts end up in differ
 
 ## What it does
 
-Warranty Receipt Graph is a report-only Uliya Skill for UGREEN AI NAS, built for the Open Innovation track. Given one user-authorized folder, it links:
+Warranty Receipt Graph is a report-only Uliya Skill for UGREEN AI NAS, built for the Automate Your Workflow track. Given one user-authorized folder, it links:
 
 Purchase → Receipt/Invoice → Line item/Product → Warranty
 
@@ -71,7 +71,7 @@ Mermaid
 
 ## Image gallery
 
-Optional. If you want a cover, use a 3:2 image with the title, the pipeline `Purchase → Receipt/Invoice → Line item/Product → Warranty`, and the line `UGREEN Hackathon 2026 · Open Innovation`.
+Optional. If you want a cover, use a 3:2 image with the title, the pipeline `Purchase → Receipt/Invoice → Line item/Product → Warranty`, and the line `UGREEN Hackathon 2026 · Automate Your Workflow`.
 
 ## Video demo link
 
